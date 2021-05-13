@@ -1,0 +1,1 @@
+insert into KORISNIK (id,korisnicko_ime,lozinka,ime,prezime,kontakt_broj,email,datum_rodjenja,uloga,aktivan) values (1,'vujke123','test','Jovan','Vujic','123456','vujic502@gmail.com','20-01-1999',1,true);
