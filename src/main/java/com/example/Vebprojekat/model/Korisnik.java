@@ -51,7 +51,7 @@ public class Korisnik implements Serializable {
     private Set <Trening> trening=new HashSet<>();
 
     @ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Fitnes_Centar centar;
+    private Fitnes_Centar Fitnes_Centar;
 
 
 

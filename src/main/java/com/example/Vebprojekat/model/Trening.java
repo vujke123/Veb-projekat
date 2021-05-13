@@ -33,7 +33,7 @@ public class Trening implements Serializable {
     private  Set<Prijavljen_Trening> prijavljen = new HashSet<>();
 
     @ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-    private Korisnik trener;
+    private Korisnik Trener;
 
     public Long getId() {
         return id;
@@ -100,10 +100,10 @@ public class Trening implements Serializable {
     }
 
     public Korisnik getTrener() {
-        return trener;
+        return Trener;
     }
 
     public void setTrener(Korisnik trener) {
-        this.trener = trener;
+        this.Trener = trener;
     }
 }

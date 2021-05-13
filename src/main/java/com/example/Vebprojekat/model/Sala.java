@@ -22,7 +22,7 @@ public class Sala implements Serializable {
     private Set<Odrzavanje_treninga> odrzavanje_treninga = new HashSet<>();
 
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-    private Fitnes_Centar centar;
+    private Fitnes_Centar Fitnes_centar;
 
     public Long getId() {
         return id;
@@ -57,10 +57,10 @@ public class Sala implements Serializable {
     }
 
     public Fitnes_Centar getCentar() {
-        return centar;
+        return Fitnes_centar;
     }
 
     public void setCentar(Fitnes_Centar centar) {
-        this.centar = centar;
+        this.Fitnes_centar = centar;
     }
 }

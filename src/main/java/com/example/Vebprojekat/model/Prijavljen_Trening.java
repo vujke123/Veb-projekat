@@ -14,6 +14,10 @@ public class Prijavljen_Trening implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Korisnik korisnik;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Trening Trening;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Korisnik Clan;
 
     public Long getId() {
         return id;

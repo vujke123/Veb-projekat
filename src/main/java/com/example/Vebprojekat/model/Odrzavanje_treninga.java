@@ -2,6 +2,8 @@ package com.example.Vebprojekat.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Odrzavanje_treninga implements Serializable {
@@ -17,6 +19,8 @@ public class Odrzavanje_treninga implements Serializable {
 
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     private Sala sala;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Sala> Sale = new HashSet<>();
 
 
     public Long getId() {

@@ -13,7 +13,9 @@ public class Odradjen_trening implements Serializable {
     private double ocena;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Trening trening;
+    private Trening Trening;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Korisnik Clan;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Korisnik korisnik;
@@ -35,11 +37,11 @@ public class Odradjen_trening implements Serializable {
     }
 
     public Trening getTrening() {
-        return trening;
+        return Trening;
     }
 
     public void setTrening(Trening trening) {
-        this.trening = trening;
+        this.Trening = trening;
     }
 
     public Korisnik getKorisnik() {
