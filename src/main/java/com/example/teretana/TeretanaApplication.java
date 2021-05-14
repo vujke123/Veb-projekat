@@ -1,13 +1,13 @@
-package com.example.Vebprojekat;
+package com.example.teretana;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class VebProjekatApplication {
+public class TeretanaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VebProjekatApplication.class, args);
+		SpringApplication.run(TeretanaApplication.class, args);
 	}
 
 }

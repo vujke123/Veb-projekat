@@ -1,6 +1,5 @@
-package com.example.Vebprojekat.model;
+package com.example.teretana.model;
 
-import com.example.Vebprojekat.model.Fitnes_Centar;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -64,3 +63,4 @@ public class Sala implements Serializable {
         this.Fitnes_centar = centar;
     }
 }
+

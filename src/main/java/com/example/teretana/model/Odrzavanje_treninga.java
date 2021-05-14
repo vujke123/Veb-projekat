@@ -1,4 +1,4 @@
-package com.example.Vebprojekat.model;
+package com.example.teretana.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -56,3 +56,4 @@ public class Odrzavanje_treninga implements Serializable {
     }
 
 }
+

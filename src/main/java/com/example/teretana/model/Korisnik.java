@@ -1,5 +1,4 @@
-package com.example.Vebprojekat.model;
-
+package com.example.teretana.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -159,3 +158,4 @@ public class Korisnik implements Serializable {
         this.trening = trening;
     }
 }
+

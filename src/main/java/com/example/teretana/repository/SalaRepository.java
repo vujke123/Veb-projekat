@@ -1,6 +1,6 @@
-package com.example.Vebprojekat.repository;
+package com.example.teretana.repository;
 
-import com.example.Vebprojekat.model.Sala;
+import com.example.teretana.model.Sala;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SalaRepository extends JpaRepository<Sala,Long> {

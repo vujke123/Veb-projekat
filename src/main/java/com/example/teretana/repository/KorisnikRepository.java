@@ -1,6 +1,6 @@
-package com.example.Vebprojekat.repository;
+package com.example.teretana.repository;
 
-import com.example.Vebprojekat.model.Korisnik;
+import com.example.teretana.model.Korisnik;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KorisnikRepository extends JpaRepository<Korisnik,Long> {

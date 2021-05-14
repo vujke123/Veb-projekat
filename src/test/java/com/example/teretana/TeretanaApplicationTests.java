@@ -1,10 +1,10 @@
-package com.example.Vebprojekat;
+package com.example.teretana;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VebProjekatApplicationTests {
+class TeretanaApplicationTests {
 
 	@Test
 	void contextLoads() {
