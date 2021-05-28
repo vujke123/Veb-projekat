@@ -1,10 +1,13 @@
 package com.example.teretana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Trening implements Serializable {
     @Id
@@ -29,8 +32,6 @@ public class Trening implements Serializable {
     @OneToMany(mappedBy = "Trening",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Odradjen_trening> odradjen = new HashSet<>();
 
-    @OneToMany(mappedBy = "Trening", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private  Set<Prijavljen_Trening> prijavljen = new HashSet<>();
 
     @ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     private Korisnik Trener;
@@ -91,14 +92,6 @@ public class Trening implements Serializable {
         this.odradjen = odradjen;
     }
 
-    public Set<Prijavljen_Trening> getPrijavljen() {
-        return prijavljen;
-    }
-
-    public void setPrijavljen(Set<Prijavljen_Trening> prijavljen) {
-        this.prijavljen = prijavljen;
-    }
-
     public Korisnik getTrener() {
         return Trener;
     }
@@ -106,5 +99,19 @@ public class Trening implements Serializable {
     public void setTrener(Korisnik trener) {
         this.Trener = trener;
     }
+
+    public Trening(Long id, String naziv, String opis, String tip_treninga,
+                   String trajanje, double ocena, Set<Odradjen_trening> odradjen, Korisnik trener) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.tip_treninga = tip_treninga;
+        this.trajanje = trajanje;
+        this.ocena = ocena;
+        this.odradjen = odradjen;
+        Trener = trener;
+    }
+
+    public Trening() {ocena=0;}
 }
 

@@ -1,12 +1,13 @@
 package com.example.teretana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-enum Uloga { ADMIN, TRENER, CLAN }
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Korisnik implements Serializable {
     @Id
@@ -40,11 +41,11 @@ public class Korisnik implements Serializable {
     @Column
     private Boolean aktivan;
 
-    @OneToMany( mappedBy = "Clan", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Set <Odradjen_trening> odradjen_trening=new HashSet<>();
-
-    @OneToMany( mappedBy = "Clan", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Set <Prijavljen_Trening> prijavljen_trening=new HashSet<>();
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "REZERVACIJE",
+            joinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "odrzavanje_id", referencedColumnName = "id"))
+    Set<Odrzavanje_treninga> prijavljen=new HashSet<>();
 
     @OneToMany( mappedBy = "Trener", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set <Trening> trening=new HashSet<>();
@@ -134,21 +135,6 @@ public class Korisnik implements Serializable {
         this.aktivan = aktivan;
     }
 
-    public Set<Odradjen_trening> getOdradjen_trening() {
-        return odradjen_trening;
-    }
-
-    public void setOdradjen_trening(Set<Odradjen_trening> odradjen_trening) {
-        this.odradjen_trening = odradjen_trening;
-    }
-
-    public Set<Prijavljen_Trening> getPrijavljen_trening() {
-        return prijavljen_trening;
-    }
-
-    public void setPrijavljen_trening(Set<Prijavljen_Trening> prijavljen_trening) {
-        this.prijavljen_trening = prijavljen_trening;
-    }
 
     public Set<Trening> getTrening() {
         return trening;
@@ -156,6 +142,41 @@ public class Korisnik implements Serializable {
 
     public void setTrening(Set<Trening> trening) {
         this.trening = trening;
+    }
+
+    public Set<Odrzavanje_treninga> getPrijavljen() {
+        return prijavljen;
+    }
+
+    public void setPrijavljen(Set<Odrzavanje_treninga> prijavljen) {
+        this.prijavljen = prijavljen;
+    }
+
+    public com.example.teretana.model.Fitnes_Centar getFitnes_Centar() {
+        return Fitnes_Centar;
+    }
+
+    public void setFitnes_Centar(com.example.teretana.model.Fitnes_Centar fitnes_Centar) {
+        Fitnes_Centar = fitnes_Centar;
+    }
+
+    public Korisnik() {}
+
+    public Korisnik(Long id, String korisnicko_ime, String lozinka, String ime, String prezime, String kontakt_broj, String email, String datum_rodjenja,
+                    Uloga uloga, Boolean aktivan, Set<Odrzavanje_treninga> prijavljen, Set<Trening> trening, com.example.teretana.model.Fitnes_Centar fitnes_Centar) {
+        this.id = id;
+        this.korisnicko_ime = korisnicko_ime;
+        this.lozinka = lozinka;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.kontakt_broj = kontakt_broj;
+        this.email = email;
+        this.datum_rodjenja = datum_rodjenja;
+        this.uloga = uloga;
+        this.aktivan = aktivan;
+        this.prijavljen = prijavljen;
+        this.trening = trening;
+        this.Fitnes_Centar = fitnes_Centar;
     }
 }
 

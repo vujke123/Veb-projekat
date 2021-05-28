@@ -1,9 +1,13 @@
 package com.example.teretana.model;
+import com.example.teretana.model.dto.FitnesDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Fitnes_Centar implements Serializable {
 
@@ -28,6 +32,9 @@ public class Fitnes_Centar implements Serializable {
 
     @OneToMany (mappedBy= "Fitnes_centar",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     private Set<Sala> sale=new HashSet<>();
+
+    @OneToMany(mappedBy = "fitnes", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Odrzavanje_treninga> odrzavanje=new HashSet<>();
 
     public Long getId() {
         return id;
@@ -85,4 +92,46 @@ public class Fitnes_Centar implements Serializable {
         this.sale = sale;
     }
 
+    public Set<Odrzavanje_treninga> getOdrzavanje() {
+        return odrzavanje;
+    }
+
+    public void setOdrzavanje(Set<Odrzavanje_treninga> odrzavanje) {
+        this.odrzavanje = odrzavanje;
+    }
+
+    public Fitnes_Centar(Long id, String naziv, String adresa, String br_tel_centrale, String email, Set<Korisnik> trener,
+                         Set<Sala> sale, Set<Odrzavanje_treninga> odrzavanje) {
+        this.id = id;
+        this.naziv = naziv;
+        this.adresa = adresa;
+        this.br_tel_centrale = br_tel_centrale;
+        this.email = email;
+        this.trener = trener;
+        this.sale = sale;
+        this.odrzavanje = odrzavanje;
+    }
+
+    public Fitnes_Centar() {}
+
+    public static Fitnes_Centar getFitnesDTO(FitnesDTO fitnesDTO) {
+        Fitnes_Centar fitnes= new Fitnes_Centar();
+        fitnes.setAdresa(fitnesDTO.getAdresa());
+        fitnes.setEmail(fitnesDTO.getEmail());
+        fitnes.setNaziv(fitnesDTO.getNaziv());
+        fitnes.setBr_tel_centrale(fitnesDTO.getBr_tel_centrale());
+        return fitnes;
+    }
+
+    public Fitnes_Centar(String naziv, String adresa, String br_tel_centrale, String email) {
+        this.naziv = naziv;
+        this.adresa = adresa;
+        this.br_tel_centrale = br_tel_centrale;
+        this.email = email;
+    }
+
+    public Fitnes_Centar(String naziv, String adresa) {
+        this.naziv = naziv;
+        this.adresa = adresa;
+    }
 }

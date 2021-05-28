@@ -1,10 +1,14 @@
 package com.example.teretana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Odrzavanje_treninga implements Serializable {
     @Id
@@ -12,15 +16,25 @@ public class Odrzavanje_treninga implements Serializable {
     private Long id;
 
     @Column
-    private String Dan;
+    private Date Dan;
+
+    @Column
+    private String Vreme;
 
     @Column
     private String cena_karte;
 
-    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-    private Sala sala;
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<Sala> Sale = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Trening trening;
+
+    @ManyToMany(mappedBy = "odrzavanje", cascade = CascadeType.ALL)
+    private Set<Sala> sale = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Fitnes_Centar fitnes;
+
+    @ManyToMany(mappedBy = "prijavljen")
+    private Set<Korisnik> clan = new HashSet<>();
 
 
     public Long getId() {
@@ -31,11 +45,11 @@ public class Odrzavanje_treninga implements Serializable {
         this.id = id;
     }
 
-    public String getDan() {
+    public Date getDan() {
         return Dan;
     }
 
-    public void setDan(String dan) {
+    public void setDan(Date dan) {
         Dan = dan;
     }
 
@@ -47,13 +61,59 @@ public class Odrzavanje_treninga implements Serializable {
         this.cena_karte = cena_karte;
     }
 
-    public Sala getSala() {
-        return sala;
+    public String getVreme() {
+        return Vreme;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setVreme(String vreme) {
+        Vreme = vreme;
+    }
+
+    public Trening getTrening() {
+        return trening;
+    }
+
+    public void setTrening(Trening trening) {
+        this.trening = trening;
+    }
+
+    public Set<Sala> getSale() {
+        return sale;
+    }
+
+    public void setSale(Set<Sala> sale) {
+        this.sale = sale;
+    }
+
+    public Fitnes_Centar getFitnes() {
+        return fitnes;
+    }
+
+    public void setFitnes(Fitnes_Centar fitnes) {
+        this.fitnes = fitnes;
+    }
+
+    public Set<Korisnik> getClan() {
+        return clan;
+    }
+
+    public void setClan(Set<Korisnik> clan) {
+        this.clan = clan;
+    }
+
+    public Odrzavanje_treninga(Long id, Date dan, String vreme,
+                               String cena_karte, Trening trening, Set<Sala> sale, Fitnes_Centar fitnes, Set<Korisnik> clan) {
+        this.id = id;
+        Dan = dan;
+        Vreme = vreme;
+        this.cena_karte = cena_karte;
+        this.trening = trening;
+        this.sale = sale;
+        this.fitnes = fitnes;
+        this.clan = clan;
+    }
+
+    public Odrzavanje_treninga() {
     }
 
 }
-

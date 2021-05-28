@@ -1,10 +1,24 @@
 package com.example.teretana.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Sala implements Serializable {
     @Id
@@ -17,8 +31,11 @@ public class Sala implements Serializable {
     @Column
     private String oznaka_sale;
 
-    @ManyToMany(mappedBy = "Sale" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Odrzavanje_treninga> odrzavanje_treninga = new HashSet<>();
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "SOBE_ODRZAVANJE",
+            joinColumns = @JoinColumn(name = "soba_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "odrzavanje_id", referencedColumnName = "id"))
+    private Set<Odrzavanje_treninga> odrzavanje = new HashSet<>();
 
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     private Fitnes_Centar Fitnes_centar;
@@ -47,20 +64,39 @@ public class Sala implements Serializable {
         this.oznaka_sale = oznaka_sale;
     }
 
-    public Set<Odrzavanje_treninga> getOdrzavanje_treninga() {
-        return odrzavanje_treninga;
-    }
-
-    public void setOdrzavanje_treninga(Set<Odrzavanje_treninga> odrzavanje_treninga) {
-        this.odrzavanje_treninga = odrzavanje_treninga;
-    }
-
     public Fitnes_Centar getCentar() {
         return Fitnes_centar;
     }
 
     public void setCentar(Fitnes_Centar centar) {
         this.Fitnes_centar = centar;
+    }
+
+    public Set<Odrzavanje_treninga> getOdrzavanje() {
+        return odrzavanje;
+    }
+
+    public void setOdrzavanje(Set<Odrzavanje_treninga> odrzavanje) {
+        this.odrzavanje = odrzavanje;
+    }
+
+    public Fitnes_Centar getFitnes_centar() {
+        return Fitnes_centar;
+    }
+
+    public void setFitnes_centar(Fitnes_Centar fitnes_centar) {
+        Fitnes_centar = fitnes_centar;
+    }
+
+    public Sala() {}
+
+    public Sala(Long id, int kapacitet, String oznaka_sale, Set<Odrzavanje_treninga> odrzavanje,
+                Fitnes_Centar fitnes_centar) {
+        this.id = id;
+        this.kapacitet = kapacitet;
+        this.oznaka_sale = oznaka_sale;
+        this.odrzavanje = odrzavanje;
+        Fitnes_centar = fitnes_centar;
     }
 }
 

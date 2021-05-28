@@ -1,8 +1,11 @@
 package com.example.teretana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Odradjen_trening implements Serializable {
     @Id
@@ -13,12 +16,9 @@ public class Odradjen_trening implements Serializable {
     private double ocena;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Trening Trening;
+    public Trening Trening;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Korisnik Clan;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Korisnik korisnik;
+    public Korisnik Clan;
 
     public Long getId() {
         return id;
@@ -44,12 +44,14 @@ public class Odradjen_trening implements Serializable {
         this.Trening = trening;
     }
 
-    public Korisnik getKorisnik() {
-        return korisnik;
+    public Odradjen_trening(Long id, double ocena, com.example.teretana.model.Trening trening, Korisnik clan) {
+        this.id = id;
+        this.ocena = ocena;
+        this.Trening = trening;
+        this.Clan = clan;
     }
+    public Odradjen_trening() {
 
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
     }
 }
 
