@@ -12,8 +12,10 @@ import java.util.List;
 @Transactional
 @Service
 public class KorisnikService {
+
     @Autowired
     private KorisnikRepository korisnikRepository;
+
 
     public Korisnik findOne(Long id){
         Korisnik korisnik = this.korisnikRepository.findById(id).get();
@@ -33,4 +35,6 @@ public class KorisnikService {
             return null;
         return korisnik;
     }
+
+
 }

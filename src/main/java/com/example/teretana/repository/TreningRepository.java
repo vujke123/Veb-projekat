@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TreningRepository extends JpaRepository<Trening,Long> {
-  /*  @Modifying
-    @Query("update Trening set ocena = :ocena WHERE id = : Treningid")
-    void setRating(@Param("Treningid") Long id, @Param("ocena") double ocena);*/
+   /* @Modifying
+    @Query("update Trening set ocena = :ocena WHERE id = : Id")
+    void setRating(@Param("Id") Long id, @Param("ocena") double ocena);*/
 
 }

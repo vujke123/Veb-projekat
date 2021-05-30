@@ -1,9 +1,9 @@
 body {
-    background-color: #a3a7b5;
+    background-color: white;
 }
 
 div{
-    background-color:#a3a7b5;
+    background-color:white;
     text-align:center;
     width:80%;
     padding:10px;
@@ -11,7 +11,7 @@ div{
     margin-top:4rem;
 }
 #innerdiv{
-    background-color:rgb(111,22,233);
+    background-color:darkblue;
     margin:auto;
 }
 
