@@ -41,7 +41,7 @@ function reg() {
     let email = document.getElementById('email').value;
     let ime = document.getElementById('ime').value;
     let prezime = document.getElementById('prezime').value;
-    let broj_telefona = document.getElementById('br_telefona').value;
+    let kontakt_broj = document.getElementById('kontakt_broj').value;
     let datum_rodjenja = document.getElementById('datum_rodjenja').value;
     let korisnicko_ime = document.getElementById('korisnicko_ime').value;
     let lozinka = document.getElementById('lozinka').value;
@@ -50,7 +50,7 @@ function reg() {
         "email":email,
         "ime": ime,
         "prezime": prezime,
-        "broj_telefona": broj_telefona,
+        "kontakt_broj": kontakt_broj,
         "datum_rodjenja" : datum_rodjenja,
         "korisicko_ime" : korisnicko_ime,
         "lozinka" : lozinka,

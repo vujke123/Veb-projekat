@@ -1,5 +1,6 @@
 package com.example.teretana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Korisnik implements Serializable {
     @Column
     private Boolean aktivan;
 
+    @JsonIgnore
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "REZERVACIJE",
             joinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"),

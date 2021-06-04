@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:inline="javascript">
-        var korisnik = [[${korisnik}]];
+        var korisnik /* = [[${korisnik}]];*/
     </script>
        <script src="/js/login.js" type="text/javascript"></script>
        <script src="/js/auth.js" type="text/javascript"></script>
@@ -43,27 +43,6 @@
                     </div>
 
                 </li>
-                <li id="offline" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Login
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <form class="px-4 py-3" id="loginForm">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email"  />
-                            </div>
-                            <div class="form-group">
-                                <label for="lozinka">Lozinka</label>
-                                <input type="password" class="form-control" id="lozinka"  />
-                            </div>
-
-                            <button type="button" onclick="login()" class="btn btn-primary">Prijava</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/registracija}">Registracija</a>
-                    </div>
-                </li>
             </ul>
     </div>
 </nav>
@@ -78,10 +57,10 @@
                 <div class="col-md-8">
                     <div class="card-body ">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item" th:text="'Ime : ' + ${korisnik.korisnicko_ime}"></li>
+                            <li class="list-group-item" th:text="'Ime : ' + ${korisnik.ime}"></li>
                             <li class="list-group-item" th:text="'Prezime : ' + ${korisnik.prezime}"></li>
                             <li class="list-group-item" th:text="'Email : ' + ${korisnik.email}"></li>
-                            <li class="list-group-item" th:text="'Broj telefona : ' + ${korisnik.br_telefona}"></li>
+                            <li class="list-group-item" th:text="'Broj telefona : ' + ${korisnik.kontakt_broj}"></li>
 
                         </ul>
                     </div>
@@ -95,7 +74,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="collapse navbar-collapse" id="navbarResponsive1">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" onclick="watched_movies()">Odradjeni treninzi</a>
@@ -114,7 +93,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="collapse navbar-collapse" id="navbarResponsive2">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" onclick="managers()">Treneri</a>

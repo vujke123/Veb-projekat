@@ -1,5 +1,6 @@
 package com.example.teretana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Trening implements Serializable {
     @Column
     private double ocena;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "Trening",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Odradjen_trening> odradjen = new HashSet<>();
 
@@ -47,6 +49,8 @@ public class Trening implements Serializable {
     public String getNaziv() {
         return naziv;
     }
+
+
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
@@ -88,17 +92,10 @@ public class Trening implements Serializable {
         return odradjen;
     }
 
-    public void setOdradjen(Set<Odradjen_trening> odradjen) {
-        this.odradjen = odradjen;
-    }
-
     public Korisnik getTrener() {
         return Trener;
     }
 
-    public void setTrener(Korisnik trener) {
-        this.Trener = trener;
-    }
 
     public Trening(Long id, String naziv, String opis, String tip_treninga,
                    String trajanje, double ocena, Set<Odradjen_trening> odradjen, Korisnik trener) {

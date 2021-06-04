@@ -1,5 +1,6 @@
 package com.example.teretana.model;
 import com.example.teretana.model.dto.FitnesDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public class Fitnes_Centar implements Serializable {
 
     @Column(unique = true)
     private String email;
-
+    @JsonIgnore
     @OneToMany (mappedBy= "Fitnes_Centar",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     private Set<Korisnik> trener=new HashSet<>();
 
