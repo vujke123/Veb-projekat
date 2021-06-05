@@ -8,7 +8,7 @@ function login() {
 
     console.log(formData);
     $.ajax({
-        url: '/prijava',
+        url: '/login',
         dataType: 'json',
         type: 'post',
         contentType: 'application/json',
@@ -18,21 +18,17 @@ function login() {
             sessionStorage.setItem("id", data["id"]);
             sessionStorage.setItem("uloga",data["uloga"]);
 
-            window.location.replace("/racun/"+data["id"]);
+            window.location.replace("/profil/"+data["id"]);
         },
         error: function( jqXhr, textStatus, errorThrown ){
             if (jqXhr.status == 404) {
-                alert("Email nije pronadjen!");
+                alert("Email ili lozinka nisu ispravni!");
                 return;
-            } else if (jqXhr.status == 400) {
-                alert("Pogresna lozinka");
-                return;
-            } else if (jqXhr.status == 406) {
+            } else  {
                 alert("Server error");
                 return;
             }
-            // default handling
-            alert("error")
+
         }
     });
 }
@@ -52,14 +48,12 @@ function reg() {
         "prezime": prezime,
         "kontakt_broj": kontakt_broj,
         "datum_rodjenja" : datum_rodjenja,
-        "korisicko_ime" : korisnicko_ime,
+        "korisnicko_ime" : korisnicko_ime,
         "lozinka" : lozinka,
-        "uloga" : 0,
-        "aktivnost" : false
-
     });
 
     console.log(formData);
+
     $.ajax({
         url: '/registracija-korisnika',
         dataType: 'json',

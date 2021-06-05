@@ -1,6 +1,7 @@
 package com.example.teretana.service;
 
 import com.example.teretana.model.Trening;
+import com.example.teretana.model.dto.PretragaDTO;
 import com.example.teretana.model.dto.TreninziDTO;
 import com.example.teretana.repository.TreningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,18 @@ public class TreningService {
         return new TreninziDTO(treninzi,tip);
     }
 
-   // public void setRating(Long id, double ocena ) {this.treningRepository.setRating(id,ocena);}
+    public TreninziDTO treningSearch(PretragaDTO pretragaDTO) {
+        List<Trening> treninzi = this.treningRepository.findAllBySearch(pretragaDTO.getNaziv());
+       TreninziDTO treninziDTO = new TreninziDTO();
+       treninziDTO.setTreninzi(new ArrayList<>());
+        for(Trening t : treninzi){
+            treninziDTO.getTreninzi().add(t);
+        }
+        return treninziDTO;
+    }
+
+
+
+    // public void setRating(Long id, double ocena ) {this.treningRepository.setRating(id,ocena);}
 
 }

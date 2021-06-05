@@ -1,24 +1,19 @@
 package com.example.teretana.model.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class KorisnikDTO {
     private String email;
     private String lozinka;
+    private String ime;
+    private String prezime;
+    private String korisnicko_ime;
+    private String kontakt_broj;
+    private String datum_rodjenja;
 
-    public KorisnikDTO() {}
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLozinka() {
-        return lozinka;
-    }
-
-    public void setLozinka(String lozinka) {
-        this.lozinka = lozinka;
-    }
 }

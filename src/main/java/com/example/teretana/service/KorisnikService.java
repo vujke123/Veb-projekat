@@ -1,6 +1,7 @@
 package com.example.teretana.service;
 
 import com.example.teretana.model.Korisnik;
+import com.example.teretana.model.Uloga;
 import com.example.teretana.model.dto.KorisnikDTO;
 import com.example.teretana.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,20 @@ public class KorisnikService {
         return korisnici;
     }
 
-    public Korisnik save(Korisnik korisnik) { return this.korisnikRepository.save(korisnik);}
+    public Korisnik save(KorisnikDTO korisnik) {
+        Korisnik newKorisnik = new Korisnik();
+        newKorisnik.setEmail(korisnik.getEmail());
+        newKorisnik.setIme(korisnik.getIme());
+        newKorisnik.setPrezime(korisnik.getPrezime());
+        newKorisnik.setDatum_rodjenja(korisnik.getDatum_rodjenja());
+        newKorisnik.setKontakt_broj(korisnik.getKontakt_broj());
+        newKorisnik.setKorisnicko_ime(korisnik.getKorisnicko_ime());
+        newKorisnik.setLozinka(korisnik.getLozinka());
+        newKorisnik.setAktivan(true);
+        newKorisnik.setUloga(Uloga.CLAN);
+
+        return this.korisnikRepository.save(newKorisnik);
+    }
 
     public Korisnik checkEmail(KorisnikDTO korisnikDTO) {
         Korisnik korisnik = this.korisnikRepository.findByEmail(korisnikDTO.getEmail());

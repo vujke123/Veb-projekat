@@ -1,6 +1,7 @@
 package com.example.teretana.controller;
 
 import com.example.teretana.model.Trening;
+import com.example.teretana.model.dto.PretragaDTO;
 import com.example.teretana.model.dto.TreninziDTO;
 import com.example.teretana.service.TreningService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class TreningController {
@@ -19,6 +21,11 @@ public class TreningController {
         TreninziDTO treninziDTO= this.treningService.getData();
         model.addAttribute("treninziDTO", treninziDTO);
         return "treninzi";
+    }
+
+    @GetMapping("/pretraga")
+    public TreninziDTO pretraga(@RequestBody PretragaDTO pretragaDTO) {
+        return this.treningService.treningSearch(pretragaDTO);
     }
 
     @GetMapping("/trening/{id}")
