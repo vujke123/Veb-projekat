@@ -71,7 +71,7 @@ function filterData() {
       });
 }
 
-function addCinema() {
+function addFitnes() {
     let id = sessionStorage.getItem("id");
     let email = document.getElementById('emailc').value;
     let naziv = document.getElementById('naziv').value;
@@ -83,8 +83,8 @@ function addCinema() {
         "br_tel_centrale": br_tel_centrale,
         "adresa": adresa,
         "schedule": null,
-        "managers": null,
-        "rooms": null
+        "trener": null,
+        "sala": null
     });
     console.log(formData);
     $.ajax({

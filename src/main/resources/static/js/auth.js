@@ -3,7 +3,7 @@ function initTreninzi(){
     let id = sessionStorage.getItem("id");
     let offline=document.getElementById("offline");
     let online=document.getElementsByClassName("online");
-    let viewer=document.getElementsByClassName("viewer");
+    let viewer=document.getElementsByClassName("clan");
     if (id == null) {
         for (let i = 0; i < online.length; i++) {
             online[i].style.display = "none";
@@ -31,6 +31,21 @@ function initTreninzi(){
         }
         offline.style.display="none";
     }
+}
+
+function init(){
+
+    let id = sessionStorage.getItem("id");
+    let offline=document.getElementById("offline");
+    let online=document.getElementById("online");
+    if (id == null) {
+        offline.style.display="block";
+        online.style.display="none";
+    } else {
+        online.style.display="block";
+        offline.style.display="none";
+    }
+
 }
 
 function initAcc(){
@@ -99,7 +114,7 @@ function initAcc(){
     }
 }
 
-function initCinema () {
+function initFitnes () {
     let id = sessionStorage.getItem("id");
     let uloga = sessionStorage.getItem("uloga");
     let offline=document.getElementById("offline");
@@ -112,7 +127,7 @@ function initCinema () {
         offline.style.display="block";
         online.style.display="none";
     } else {
-        if (role == "ADMIN") {
+        if (uloga == "ADMIN") {
             for (let i = 0; i < admin.length; i++) {
                 admin[i].style.display = "";
             }

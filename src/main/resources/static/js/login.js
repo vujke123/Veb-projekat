@@ -77,12 +77,12 @@ function reg() {
 
 }
 
+function profile() {
+    var id = sessionStorage.getItem("id");
+    window.location.replace("/profil/" + id);
+}
+
 function logOut()  {
     sessionStorage.clear();
     window.location.replace("/");
-}
-
-function profile() {
-    var id= sessionStorage.getItem("id");
-    window.location.replace("/racun/"+id);
 }
