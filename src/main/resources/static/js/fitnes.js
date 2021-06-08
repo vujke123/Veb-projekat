@@ -51,18 +51,59 @@ function sortTable(n) {
     }
 }
 function filterData() {
-    var naziv= document.getElementById("naziv").value;
+    var naziv= document.getElementById("treningName").value;
     var formData = JSON.stringify({
         "naziv": naziv,
     });
 
     console.log(formData);
     $.ajax({
-        url: '/treninzi',
+        url: '/pretraga',
         dataType: 'json',
         type: 'post',
         contentType: 'application/json',
         data: formData,
+        success: function(data) {
+            console.log("seccess");
 
-      })
+
+        },
+      });
 }
+
+function addCinema() {
+    let id = sessionStorage.getItem("id");
+    let email = document.getElementById('emailc').value;
+    let naziv = document.getElementById('naziv').value;
+    let br_tel_centrale = document.getElementById('br_tel_centrale').value;
+    let adresa = document.getElementById('adresa').value;
+    var formData = JSON.stringify({
+        "email": email,
+        "naziv": naziv,
+        "br_tel_centrale": br_tel_centrale,
+        "adresa": adresa,
+        "schedule": null,
+        "managers": null,
+        "rooms": null
+    });
+    console.log(formData);
+    $.ajax({
+        url: '/dodaj-fitnes',
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: formData,
+        success: function () {
+            console.log("success");
+            window.location.replace("/fitnesi");
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            if (jqXhr.status == 409) {
+                alert("Something went wrong!");
+                return;
+            }
+        }
+    });
+
+}
+

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
@@ -23,9 +24,11 @@ public class TreningController {
         return "treninzi";
     }
 
-    @GetMapping("/pretraga")
-    public TreninziDTO pretraga(@RequestBody PretragaDTO pretragaDTO) {
-        return this.treningService.treningSearch(pretragaDTO);
+    @PostMapping("/pretraga")
+    public String pretraga(Model model, @RequestBody PretragaDTO pretragaDTO) {
+        TreninziDTO treninziDTO= this.treningService.treningSearch(pretragaDTO);
+        model.addAttribute("treninziDTO", treninziDTO);
+        return "treninzi1";
     }
 
     @GetMapping("/trening/{id}")
