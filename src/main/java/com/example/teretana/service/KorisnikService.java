@@ -1,8 +1,11 @@
 package com.example.teretana.service;
 
+import com.example.teretana.model.Fitnes_Centar;
 import com.example.teretana.model.Korisnik;
+import com.example.teretana.model.Sala;
 import com.example.teretana.model.Uloga;
 import com.example.teretana.model.dto.KorisnikDTO;
+import com.example.teretana.model.dto.SalaDTO;
 import com.example.teretana.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,12 @@ public class KorisnikService {
 
     @Autowired
     private KorisnikRepository korisnikRepository;
+
+    @Autowired
+    private FitnesService fitnesService;
+
+    @Autowired
+    private SalaService salaService;
 
 
     public Korisnik findOne(Long id){
@@ -49,6 +58,11 @@ public class KorisnikService {
             return null;
         return korisnik;
     }
+    public void addRoom(SalaDTO salaDTO) {
+        Fitnes_Centar fitnes_centar=this.fitnesService.findOne(salaDTO.getFitnesId());
+        Sala room=new Sala(Math.toIntExact(salaDTO.getKapacitet()),salaDTO.getOznaka(),null,fitnes_centar);
+        this.salaService.save(room);
+    }
 
-
+    public void editRoom(Sala sala) {this.salaService.editRoom(sala);}
 }

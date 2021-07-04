@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface SalaRepository extends JpaRepository<Sala,Long> {
     @Modifying
     @Query("update Sala set oznaka_sale = :oznaka, kapacitet=:kapacitet WHERE id = :sobaId")
-    void updateRoom(@Param("sobaId") Long id, @Param("kapacitet") Long kapacitet, @Param("oznaka") String oznaka);
+    void updateRoom(@Param("sobaId") Long id, @Param("kapacitet") int kapacitet, @Param("oznaka") String oznaka);
 }

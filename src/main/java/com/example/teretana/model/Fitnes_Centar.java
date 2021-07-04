@@ -37,7 +37,7 @@ public class Fitnes_Centar implements Serializable {
     @OneToMany (mappedBy= "Fitnes_Centar",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     private Set<Korisnik> trener=new HashSet<>();
 
-    @OneToMany (mappedBy= "Fitnes_centar",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+    @OneToMany (mappedBy= "fitnes_centar",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     private Set<Sala> sale=new HashSet<>();
 
     @OneToMany(mappedBy = "fitnes", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)

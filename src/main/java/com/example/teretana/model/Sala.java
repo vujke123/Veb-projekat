@@ -40,7 +40,7 @@ public class Sala implements Serializable {
     private Set<Odrzavanje_treninga> odrzavanje = new HashSet<>();
 
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-    private Fitnes_Centar Fitnes_centar;
+    private Fitnes_Centar fitnes_centar;
 
     public Long getId() {
         return id;
@@ -67,11 +67,11 @@ public class Sala implements Serializable {
     }
 
     public Fitnes_Centar getCentar() {
-        return Fitnes_centar;
+        return fitnes_centar;
     }
 
     public void setCentar(Fitnes_Centar centar) {
-        this.Fitnes_centar = centar;
+        this.fitnes_centar = centar;
     }
 
     public Set<Odrzavanje_treninga> getOdrzavanje() {
@@ -83,22 +83,22 @@ public class Sala implements Serializable {
     }
 
     public Fitnes_Centar getFitnes_centar() {
-        return Fitnes_centar;
+        return fitnes_centar;
     }
 
     public void setFitnes_centar(Fitnes_Centar fitnes_centar) {
-        Fitnes_centar = fitnes_centar;
+        fitnes_centar = fitnes_centar;
     }
 
     public Sala() {}
 
-    public Sala(Long id, int kapacitet, String oznaka_sale, Set<Odrzavanje_treninga> odrzavanje,
+    public Sala(int kapacitet, String oznaka_sale, Set<Odrzavanje_treninga> odrzavanje,
                 Fitnes_Centar fitnes_centar) {
-        this.id = id;
+        super();
         this.kapacitet = kapacitet;
         this.oznaka_sale = oznaka_sale;
         this.odrzavanje = odrzavanje;
-        Fitnes_centar = fitnes_centar;
+        this.fitnes_centar = fitnes_centar;
     }
 }
 
