@@ -6,13 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import com.example.teretana.service.FitnesService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import com.example.teretana.model.Fitnes_Centar;
 import com.example.teretana.service.FitnesService;
 import com.example.teretana.model.dto.FitnesDTO;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 import java.util.List;
@@ -46,4 +43,26 @@ public class FitnesController {
         model.addAttribute("fitnes", fitnes);
         return "fitnes";
     }
+
+    @DeleteMapping("/ukloni_fitnes/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
+        try{
+            this.fitnesService.deleteFitnes(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e ) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/uredi_fitnes")
+    public ResponseEntity<?> edit_fitnes(@RequestBody Fitnes_Centar fitnes) {
+        try {
+            this.fitnesService.editFitnes(fitnes);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }

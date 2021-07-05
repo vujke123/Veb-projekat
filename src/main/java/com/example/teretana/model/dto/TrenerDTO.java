@@ -1,7 +1,11 @@
 package com.example.teretana.model.dto;
 
 
+import com.example.teretana.model.Uloga;
+
 public class TrenerDTO {
+
+    private Long fitnes_id;
 
     private String korisnicko_ime;
 
@@ -15,9 +19,19 @@ public class TrenerDTO {
 
     private String email;
 
+    private Uloga uloga;
+
     private String datum_rodjenja;
 
     private Boolean aktivan;
+
+    public Long getFitnes_id() {
+        return fitnes_id;
+    }
+
+    public void setFitnes_id(Long fitnes_id) {
+        this.fitnes_id = fitnes_id;
+    }
 
     public String getKorisnicko_ime() {
         return korisnicko_ime;
@@ -63,8 +77,17 @@ public class TrenerDTO {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Uloga getUloga() {
+        return uloga;
+    }
+
+    public void setUloga(Uloga uloga) {
+        this.uloga = uloga;
     }
 
     public String getDatum_rodjenja() {
@@ -82,4 +105,6 @@ public class TrenerDTO {
     public void setAktivan(Boolean aktivan) {
         this.aktivan = aktivan;
     }
+
+    public TrenerDTO() {}
 }

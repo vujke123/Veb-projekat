@@ -34,6 +34,7 @@ public class SalaService {
     }
 
     public  void editRoom(Sala sala) { this.salaRepository.updateRoom(sala.getId(),sala.getKapacitet(),sala.getOznaka_sale());}
+
     public boolean deleteById(Long fitnes_id , Long sala_id) {
         try{
             Fitnes_Centar fitnes = this.fitnesService.findOne(fitnes_id);

@@ -68,5 +68,19 @@ public class Korisnik implements Serializable {
         Fitnes_Centar = fitnes_Centar;
     }
 
+    public Korisnik(String korisnicko_ime, String lozinka, String ime, String prezime, String kontakt_broj, String email, String datum_rodjenja, Uloga uloga, Boolean aktivan, Set<Odrzavanje_treninga> prijavljen, Set<Trening> trening, com.example.teretana.model.Fitnes_Centar fitnes_Centar) {
+        this.korisnicko_ime = korisnicko_ime;
+        this.lozinka = lozinka;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.kontakt_broj = kontakt_broj;
+        this.email = email;
+        this.datum_rodjenja = datum_rodjenja;
+        this.uloga = uloga;
+        this.aktivan = aktivan;
+        this.prijavljen = prijavljen;
+        this.trening = trening;
+        Fitnes_Centar = fitnes_Centar;
+    }
 }
 

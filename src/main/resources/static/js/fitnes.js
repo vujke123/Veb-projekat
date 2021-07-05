@@ -104,6 +104,60 @@ function addFitnes() {
             }
         }
     });
+}
 
+    function deleteFitnes(fitnesi_id) {
+        let id = sessionStorage.getItem("id");
+        $.ajax({
+            url: '/ukloni-fitnes/' + fitnesi_id,
+            dataType: 'json',
+            type: 'delete',
+            success: function () {
+                console.log("success");
+                window.location.replace("/fitnesi");
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                if (jqXhr.status == 409) {
+                    alert("Something went wrong!");
+                    return;
+                }
+            }
+        });
+    }
+
+    function edit(cinema_id) {
+        window.location.replace("/fitnes/" + fitnes_id);
+    }
+
+    function editCinema(cinema_id) {
+
+        let naziv = document.getElementById("naziv").value;
+        let adresa = document.getElementById("adresa").value;
+        let br_tel_centrale = document.getElementById("br_tel_centrale").value;
+        let email = document.getElementById("email").value;
+        var formData = JSON.stringify({
+            "id": cinema_id,
+            "naziv": naziv,
+            "adresa": adresa,
+            "email": email,
+            "br_tel_centrale": br_tel_centrale,
+            "schedule": null,
+            "trener": null,
+            "sala": null
+        });
+        $.ajax({
+            url: '/uredi-fitnes',
+            dataType: 'json',
+            type: 'put',
+            contentType: 'application/json',
+            data: formData,
+            complete: function (xhr, status) {
+                if (status === 'error') {
+                    alert("Something's wrong!");
+                } else {
+                    window.location.replace("/fitnesi");
+                }
+            }
+        });
 }
 

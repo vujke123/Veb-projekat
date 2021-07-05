@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.teretana.model.Fitnes_Centar;
 import com.example.teretana.repository.FitnesRepository;
+import com.example.teretana.model.Korisnik;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -29,4 +30,11 @@ public class FitnesService {
         return  this.fitnesRepository.save(fitnes_Centar);
     }
 
+    public void deleteFitnes(Long id) {
+        this.fitnesRepository.deleteById(id);
+    }
+
+    public void editFitnes(Fitnes_Centar fitnes) {
+      //  this.fitnesRepository.updateFitnes(fitnes.getId(),fitnes.getNaziv(),fitnes.getAdresa(),fitnes.getBr_tel_centrale(),fitnes.getEmail());
+    }
 }
