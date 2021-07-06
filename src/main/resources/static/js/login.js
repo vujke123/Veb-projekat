@@ -86,3 +86,13 @@ function logOut()  {
     sessionStorage.clear();
     window.location.replace("/");
 }
+
+function odradjen_trening(){
+    var id=sessionStorage.getItem("id");
+    window.location.replace("/profil/"+id+"/odradjeni_treninzi");
+}
+
+function reservations(){
+    var id=sessionStorage.getItem("id");
+    window.location.replace("/profil/"+id+"/prijavljen");
+}

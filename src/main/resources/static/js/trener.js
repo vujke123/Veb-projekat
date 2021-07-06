@@ -59,3 +59,29 @@ function deleteManager(trener_id){
         }
     });
 }
+
+function showAll(korisnik) {
+    for(let i = 0; korisnik.odradjen_trening.length;i++){
+        document.getElementById(korisnik.odradjen_trening[i].id).style.display="";
+    }
+}
+
+function showRated(korisnik){
+    showAll(korisnik);
+    for(let i=0;i<korisnik.odradjen_trening.length;i++){
+        if(korisnik.odradjen_trening[i].ocena!=0)
+            document.getElementById(korisnik.odradjen_trening[i].id).style.display="";
+        else
+            document.getElementById(korisnik.odradjen_trening[i].id).style.display="none";
+    }
+}
+
+function showUnrated(korisnik){
+    showAll(korisnik);
+    for(let i=0;i<korisnik.odradjen_trening.length;i++){
+        if(korisnik.odradjen_trening[i].ocena==0)
+            document.getElementById(korisnik.odradjen_trening[i].id).style.display="";
+        else
+            document.getElementById(korisnik.odradjen_trening[i].id).style.display="none";
+    }
+}

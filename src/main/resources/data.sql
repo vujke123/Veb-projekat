@@ -14,3 +14,5 @@ insert into SALA(id, kapacitet, oznaka_sale, fitnes_centar_id) values (2,15,'L13
 insert into ODRZAVANJE_TRENINGA(id, dan,vreme, cena_karte, fitnes_id, trening_id) values (1, '2021-05-25', '17:00', '500din',1,2);
 
 INSERT INTO sobe_odrzavanje(soba_id , odrzavanje_id) values (1, 1);
+
+INSERT into ODRADJEN_TRENING( ocena, clan_id, trening_id ) values (6,3,2);

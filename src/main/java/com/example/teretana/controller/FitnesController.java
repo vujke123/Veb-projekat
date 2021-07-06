@@ -1,5 +1,7 @@
 package com.example.teretana.controller;
 
+import com.example.teretana.model.Korisnik;
+import com.example.teretana.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class FitnesController {
 
     @Autowired
     private FitnesService fitnesService;
+
+    @Autowired
+    private KorisnikService korisnikService;
 
     @GetMapping("/fitnesi")
     public String wel(Model model) {
@@ -63,6 +68,7 @@ public class FitnesController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
 
 
 }
