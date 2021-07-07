@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface OdrzavanjeTreningaRepository extends JpaRepository<Odrzavanje_treninga, Long> {
 
-  // List<Odrzavanje_treninga> findByFitnesId(Long id);
+  List<Odrzavanje_treninga> findByFitnesId(Long id);
 
 }

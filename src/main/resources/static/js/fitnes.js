@@ -161,3 +161,18 @@ function addFitnes() {
         });
 }
 
+function getTrening(id) {
+    $.ajax( {
+        url: '/trening/'+id,
+        type: 'get',
+        contentType: 'application/json',
+        success: function() {
+            window.location.replace("/trening"+id);
+        },
+        error: function() {
+            alert("Server error");
+            return;
+        }
+    });
+}
+

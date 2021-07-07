@@ -44,6 +44,7 @@ function createManager(){
     var id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/registracija-trenera");
 }
+
 function deleteManager(trener_id){
     let id=sessionStorage.getItem("id");
     $.ajax({

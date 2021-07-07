@@ -4,6 +4,7 @@ import com.example.teretana.model.Fitnes_Centar;
 import com.example.teretana.model.Korisnik;
 import com.example.teretana.model.Sala;
 import com.example.teretana.model.dto.KorisnikDTO;
+import com.example.teretana.model.dto.RezervisaniDTO;
 import com.example.teretana.model.dto.SalaDTO;
 import com.example.teretana.model.dto.TrenerDTO;
 import com.example.teretana.service.FitnesService;
@@ -145,4 +146,25 @@ public class KorisnikController {
         return "odradjeni_treninzi.html";
     }
 
+    @PostMapping ("/prijavljen")
+    public ResponseEntity<?> prijavljen_trening(@RequestBody RezervisaniDTO rezervisaniDTO) {
+        boolean flag = false;
+        try {
+            flag= this.korisnikService.addReservation(rezervisaniDTO.getClan_id(),rezervisaniDTO.getOdrzavanje_id());
+            if(flag)
+                return new ResponseEntity<>(HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/profil/{id}/prijavljen")
+    public String prijavljen(@PathVariable(name = "id") Long id , Model model) {
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        model.addAttribute("korisnik" , korisnik);
+        return "prijavljen.html";
+
+    }
 }

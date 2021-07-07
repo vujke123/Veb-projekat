@@ -57,7 +57,7 @@ public class Odrzavanje_treninga implements Serializable {
         return cena_karte;
     }
 
-    public void setCena_karte(String cena_karte) {
+    public void setCena_karte( String cena_karte) {
         this.cena_karte = cena_karte;
     }
 

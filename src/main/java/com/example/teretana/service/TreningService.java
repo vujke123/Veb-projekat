@@ -1,13 +1,12 @@
 package com.example.teretana.service;
 
 import com.example.teretana.model.Trening;
-import com.example.teretana.model.dto.PretragaDTO;
+import com.example.teretana.model.dto.OdrzavanjeDTO;
 import com.example.teretana.model.dto.TreninziDTO;
 import com.example.teretana.repository.TreningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class TreningService {
         return new TreninziDTO(treninzi,tip);
     }
 
-    public TreninziDTO treningSearch(PretragaDTO pretragaDTO) {
+    public TreninziDTO treningSearch(OdrzavanjeDTO pretragaDTO) {
         List<Trening> treninzi = this.treningRepository.findAllBySearch(pretragaDTO.getNaziv());
        TreninziDTO treninziDTO = new TreninziDTO();
        treninziDTO.setTreninzi(new ArrayList<>());

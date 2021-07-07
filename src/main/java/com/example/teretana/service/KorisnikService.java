@@ -25,6 +25,9 @@ public class KorisnikService {
     @Autowired
     private SalaService salaService;
 
+    @Autowired
+    private OdrzavanjeTreningaService odrzavanjeTreningaService;
+
 
     public Korisnik findOne(Long id){
         Korisnik korisnik = this.korisnikRepository.findById(id).get();
@@ -86,5 +89,18 @@ public class KorisnikService {
         this.korisnikRepository.save(newKorisnik);
     }
 
-
+    public boolean addReservation (Long korisnik_id, Long trening_id) {
+        Korisnik korisnik = this.korisnikRepository.findById(korisnik_id).get();
+        Odrzavanje_treninga odrzavanje_treninga = this.odrzavanjeTreningaService.findOne(trening_id);
+        if(korisnik.getPrijavljen().contains(odrzavanje_treninga)) {
+            return false;
+        }
+        for(Sala sala: odrzavanje_treninga.getSale()) {
+            if(sala.getKapacitet() - odrzavanje_treninga.getClan().size() > 0) {
+                korisnik.getPrijavljen().add(odrzavanje_treninga);
+                return true;
+            }
+        }
+        return false;
+    }
 }

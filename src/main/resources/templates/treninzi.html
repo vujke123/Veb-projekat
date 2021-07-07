@@ -105,14 +105,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="trening : ${treninziDTO.treninzi}" th:id="${trening.id}">
+                <tr th:each="trening1 : ${treninziDTO.treninzi}" th:id="${trening1.id}">
                     <td></td>
-                    <td th:text="${trening.naziv}"></td>
-                    <td th:text="${trening.tip_treninga}"></td>
-                    <td th:text="${trening.opis}"></td>
-                    <td th:text="${trening.ocena}"></td>
-                    <td th:text="${trening.trajanje} + ' min'"></td>
-                    <td><button type="button" th:onclick="'getTrening('+${trening.id}+')'" class="btn btn-outline-secondary viewer">Prijavljen</button></td>
+                    <td th:text="${trening1.naziv}"></td>
+                    <td th:text="${trening1.tip_treninga}"></td>
+                    <td th:text="${trening1.opis}"></td>
+                    <td th:text="${trening1.ocena}"></td>
+                    <td th:text="${trening1.trajanje} + ' min'"></td>
+                    <td><button type="button" th:onclick="'getTrening('+${trening1.id}+')'" class="btn btn-outline-secondary viewer">Prijavljen</button></td>
                 </tr>
                 </tbody>
             </table>

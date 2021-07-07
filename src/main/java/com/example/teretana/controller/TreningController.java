@@ -1,7 +1,7 @@
 package com.example.teretana.controller;
 
 import com.example.teretana.model.Trening;
-import com.example.teretana.model.dto.PretragaDTO;
+import com.example.teretana.model.dto.OdrzavanjeDTO;
 import com.example.teretana.model.dto.TreninziDTO;
 import com.example.teretana.service.TreningService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +24,12 @@ public class TreningController {
         return "treninzi";
     }
 
-    @PostMapping("/pretraga")
-    public String pretraga(Model model, @RequestBody PretragaDTO pretragaDTO) {
-        TreninziDTO treninziDTO= this.treningService.treningSearch(pretragaDTO);
-        model.addAttribute("treninziDTO", treninziDTO);
-        return "treninzi1";
-    }
 
     @GetMapping("/trening/{id}")
     public String getTrening(@PathVariable(name = "id") Long id, Model model) {
         Trening trening=this.treningService.findOne(id);
         model.addAttribute("trening", trening);
-        return "trening";
+        return "trening.html";
     }
 
 

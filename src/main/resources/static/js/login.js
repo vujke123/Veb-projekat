@@ -96,3 +96,4 @@ function reservations(){
     var id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/prijavljen");
 }
+
