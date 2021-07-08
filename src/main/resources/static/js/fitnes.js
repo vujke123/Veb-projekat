@@ -125,7 +125,7 @@ function addFitnes() {
         });
     }
 
-    function edit(cinema_id) {
+    function edit(fitnes_id) {
         window.location.replace("/fitnes/" + fitnes_id);
     }
 
@@ -146,7 +146,7 @@ function addFitnes() {
             "sala": null
         });
         $.ajax({
-            url: '/uredi-fitnes',
+            url: '/uredi_fitnes',
             dataType: 'json',
             type: 'put',
             contentType: 'application/json',

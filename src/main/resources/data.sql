@@ -17,3 +17,4 @@ INSERT INTO sobe_odrzavanje(soba_id , odrzavanje_id) values (1, 1);
 
 INSERT into ODRADJEN_TRENING( ocena, clan_id, trening_id ) values (6,3,2);
 
+insert into REZERVACIJE(clan_id, odrzavanje_id) values (3,1);

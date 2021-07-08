@@ -34,8 +34,8 @@ public class Trening implements Serializable {
     @OneToMany(mappedBy = "Trening",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Odradjen_trening> odradjen = new HashSet<>();
 
-  //  @OneToMany (mappedBy = "trening", fetch = FetchType.LAZY,orphanRemoval = true)
-  //  private Set<Odrzavanje_treninga> odrzavanje = new HashSet<>();
+   // @OneToMany (mappedBy = "trening", fetch = FetchType.LAZY,orphanRemoval = true)
+    //private Set<Odrzavanje_treninga> odrzavanje = new HashSet<>();
 
 
     @ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
@@ -101,9 +101,9 @@ public class Trening implements Serializable {
         this.odradjen = odradjen;
     }
 
-  //  public Set<Odrzavanje_treninga> getOdrzavanje() {return odrzavanje;}
+   /* public Set<Odrzavanje_treninga> getOdrzavanje() {return odrzavanje;}
 
-  //  public void setOdrzavanje(Set<Odrzavanje_treninga> odrzavanje) {this.odrzavanje = odrzavanje;}
+    public void setOdrzavanje(Set<Odrzavanje_treninga> odrzavanje) {this.odrzavanje = odrzavanje;}*/
 
     public void setTrener(Korisnik trener) {
         Trener = trener;
@@ -118,7 +118,7 @@ public class Trening implements Serializable {
         this.trajanje = trajanje;
         this.ocena = ocena;
         this.odradjen = odradjen;
-      //  this.odrzavanje = odrzavanje;
+       // this.odrzavanje = odrzavanje;
         Trener = trener;
     }
 

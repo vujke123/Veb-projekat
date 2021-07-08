@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:inline="javascript">
-        var korisnik  /*[[${user}]]*/;
+        var korisnik;
     </script>
     <script src="/js/login.js" type="text/javascript"></script>
     <script src="/js/auth.js" type="text/javascript"></script>
@@ -122,9 +122,9 @@
                 </thead>
                 <tbody>
                 <tr th:each="karta : ${korisnik.prijavljen}">
-                    <td th:text="${karta.Dan}"></td>
-                    <td th:text="${karta.Vreme}"></td>
-                    <td th:text="${karta.cena-karte}"></td>
+                    <td th:text="${karta.dan}"></td>
+                    <td th:text="${karta.vreme}"></td>
+                    <td th:text="${karta.cena_karte}"></td>
                     <td>
                         <button type="button" th:onclick="'cancelReservation('+${karta.id}+')'" class="btn btn-outline-secondary">Otkazi</button>
                     </td>

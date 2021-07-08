@@ -29,7 +29,7 @@ public class TreningController {
     public String getTrening(@PathVariable(name = "id") Long id, Model model) {
         Trening trening=this.treningService.findOne(id);
         model.addAttribute("trening", trening);
-        return "trening.html";
+        return "trening";
     }
 
 

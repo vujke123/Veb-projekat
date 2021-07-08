@@ -35,6 +35,6 @@ public class FitnesService {
     }
 
     public void editFitnes(Fitnes_Centar fitnes) {
-      //  this.fitnesRepository.updateFitnes(fitnes.getId(),fitnes.getNaziv(),fitnes.getAdresa(),fitnes.getBr_tel_centrale(),fitnes.getEmail());
+      // this.fitnesRepository.updateFitnes(fitnes.getId(),fitnes.getNaziv(),fitnes.getAdresa(),fitnes.getBr_tel_centrale(),fitnes.getEmail());
     }
 }

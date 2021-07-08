@@ -103,4 +103,11 @@ public class KorisnikService {
         }
         return false;
     }
+
+    public void cancelReservation(Long id , Long odrzavanje_id) {
+        Korisnik korisnik = this.korisnikRepository.findById(id).get();
+        Odrzavanje_treninga odrzavanje_treninga = this.odrzavanjeTreningaService.findOne(odrzavanje_id);
+        korisnik.getPrijavljen().remove(odrzavanje_treninga);
+        return;
+    }
 }

@@ -67,7 +67,7 @@ function showAll(korisnik) {
     }
 }
 
-function showRated(korisnik){
+function showRate(korisnik){
     showAll(korisnik);
     for(let i=0;i<korisnik.odradjen_trening.length;i++){
         if(korisnik.odradjen_trening[i].ocena!=0)
@@ -77,7 +77,7 @@ function showRated(korisnik){
     }
 }
 
-function showUnrated(korisnik){
+function showUnrate(korisnik){
     showAll(korisnik);
     for(let i=0;i<korisnik.odradjen_trening.length;i++){
         if(korisnik.odradjen_trening[i].ocena==0)

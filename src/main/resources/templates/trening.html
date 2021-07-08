@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/705b70177f.js" crossorigin="anonymous"></script>
 </head>
 <body onload="initTreninzi()">
-<nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd; static-top">
+<nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd" static-top>
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -96,11 +96,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="projection : ${trening.odradjen}" th:id="${projection.id}">
-                    <td th:text="${projection.Dan}"></td>
-                    <td th:text="${projection.Vreme}"></td>
-                    <td th:text="${projection.cena-karte}"></td>
-                    <td><button type="button" th:onclick="'reserve('+${projection.id}+')'" class="btn btn-outline-secondary">Prijavi</button></td>
+                <tr th:each="projection : ${trening.odrzavanje}" th:id="${projection.id}">
+                    <td th:text="${projection.dan}"></td>
+                    <td th:text="${projection.vreme}"></td>
+                    <td th:text="${projection.cena_karte}"></td>
+                    <td><button type="button" th:onclick="'reserve('+${projection.id}+')'" class="btn btn-outline-secondary">Prijavi se</button></td>
                 </tr>
                 </tbody>
             </table>

@@ -74,11 +74,11 @@ function edit(room_id){
     let id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/fitnes/soba/"+room_id);
 }
-function cinema(){
+function fitnes(){
     let id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/fitnes");
 }
-function schedule(){
+function dodaj(){
     let id=sessionStorage.getItem("id");
-    window.location.replace("/profil/"+id+"/schedule");
+    window.location.replace("/profil/"+id+"/addTrening");
 }

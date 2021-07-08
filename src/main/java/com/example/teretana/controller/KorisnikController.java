@@ -3,13 +3,9 @@ package com.example.teretana.controller;
 import com.example.teretana.model.Fitnes_Centar;
 import com.example.teretana.model.Korisnik;
 import com.example.teretana.model.Sala;
-import com.example.teretana.model.dto.KorisnikDTO;
-import com.example.teretana.model.dto.RezervisaniDTO;
-import com.example.teretana.model.dto.SalaDTO;
-import com.example.teretana.model.dto.TrenerDTO;
-import com.example.teretana.service.FitnesService;
-import com.example.teretana.service.KorisnikService;
-import com.example.teretana.service.SalaService;
+import com.example.teretana.model.Trening;
+import com.example.teretana.model.dto.*;
+import com.example.teretana.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import java.util.List;
 
 @Controller
@@ -29,6 +26,12 @@ public class KorisnikController {
 
     @Autowired
     private FitnesService fitnesService;
+
+    @Autowired
+    private TreningService treningService;
+
+    @Autowired
+    private OdrzavanjeTreningaService odrzavanjeTreningaService;
 
     @GetMapping("/registracija")
     public String registracija() {
@@ -166,5 +169,47 @@ public class KorisnikController {
         model.addAttribute("korisnik" , korisnik);
         return "prijavljen.html";
 
+    }
+
+    @GetMapping("/profil/{id}/addTrening")
+    public String addTrening(@PathVariable(name = "id") Long id , Model model){
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        Fitnes_Centar fitnes_centar = korisnik.getFitnes_Centar();
+        List<Trening> treninzi = this.treningService.findAll();
+        model.addAttribute("korisnik" , korisnik);
+        model.addAttribute("fitnes" , fitnes_centar);
+        model.addAttribute("treninzi", treninzi);
+        return "addTrening";
+
+    }
+
+    @PostMapping("/addTrening")
+    public ResponseEntity<?> add_trening(@RequestBody OdrzavanjeDTO odrzavanjeDTO) {
+        try {
+            this.odrzavanjeTreningaService.addOdrzavanje_treninga(odrzavanjeDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+    }
+
+    @GetMapping ("/profil/{id}/fitnes")
+    public String tre_fitnes(@PathVariable(name = "id") Long id, Model model) {
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        Fitnes_Centar fitnes_centar = korisnik.getFitnes_Centar();
+        model.addAttribute("fitnes" , fitnes_centar);
+        model.addAttribute("korisnik" , korisnik);
+        return "tre_fitnes";
+    }
+
+    @DeleteMapping ("/cancel_reservation")
+    public ResponseEntity<?> cancel(@RequestBody RezervisaniDTO rezervisaniDTO) {
+        try{
+            this.korisnikService.cancelReservation(rezervisaniDTO.getClan_id(),rezervisaniDTO.getOdrzavanje_id());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }   catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
