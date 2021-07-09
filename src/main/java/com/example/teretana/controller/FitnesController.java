@@ -49,12 +49,13 @@ public class FitnesController {
         return "fitnes";
     }
 
-    @DeleteMapping("/ukloni_fitnes/{id}")
+    @DeleteMapping("/ukloni-fitnes/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         try{
             this.fitnesService.deleteFitnes(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e ) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

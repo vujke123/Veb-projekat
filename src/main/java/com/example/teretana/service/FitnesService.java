@@ -30,11 +30,18 @@ public class FitnesService {
         return  this.fitnesRepository.save(fitnes_Centar);
     }
 
-    public void deleteFitnes(Long id) {
-        this.fitnesRepository.deleteById(id);
+    public void deleteFitnes(Long id){
+       this.fitnesRepository.deleteByNaziv("OLP");
+
     }
 
     public void editFitnes(Fitnes_Centar fitnes) {
-      // this.fitnesRepository.updateFitnes(fitnes.getId(),fitnes.getNaziv(),fitnes.getAdresa(),fitnes.getBr_tel_centrale(),fitnes.getEmail());
+        Fitnes_Centar fitnes_centar = this.fitnesRepository.findById(fitnes.getId()).orElse(null);
+        fitnes_centar.setNaziv(fitnes.getNaziv());
+        fitnes_centar.setAdresa(fitnes.getAdresa());
+        fitnes_centar.setBr_tel_centrale(fitnes.getBr_tel_centrale());
+        fitnes_centar.setEmail(fitnes.getEmail());
+        this.fitnesRepository.save(fitnes_centar);
+       // this.fitnesRepository.updateFitnes(fitnes.getId(),fitnes.getNaziv(),fitnes.getAdresa(),fitnes.getBr_tel_centrale(),fitnes.getEmail());
     }
 }

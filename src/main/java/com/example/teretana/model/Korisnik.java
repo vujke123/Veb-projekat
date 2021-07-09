@@ -60,9 +60,11 @@ public class Korisnik implements Serializable {
     @OneToMany( mappedBy = "Trener", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set <Trening> trening=new HashSet<>();
 
-    @ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Fitnes_Centar Fitnes_Centar;
 
+   // @OneToMany (mappedBy = "Clan" , fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+   // private Set <Odradjen_trening> odradjeni = new HashSet<>();
 
     public void setFitnes_Centar(com.example.teretana.model.Fitnes_Centar fitnes_Centar) {
         Fitnes_Centar = fitnes_Centar;

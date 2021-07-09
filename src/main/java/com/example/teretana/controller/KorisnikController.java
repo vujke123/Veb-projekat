@@ -38,12 +38,12 @@ public class KorisnikController {
         return "register";
     }
 
-    @PostMapping ( "/registracija-korisnika")
-    public ResponseEntity<?> registracija(@RequestBody KorisnikDTO korisnik){
+    @PostMapping("/registracija-korisnika")
+    public ResponseEntity<?> registracija(@RequestBody KorisnikDTO korisnik) {
         Korisnik korisnik1;
         try {
-            korisnik1=korisnikService.save(korisnik);
-        }   catch (Exception e) {
+            korisnik1 = korisnikService.save(korisnik);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         return new ResponseEntity<Korisnik>(korisnik1, HttpStatus.OK);
@@ -51,7 +51,7 @@ public class KorisnikController {
 
     @GetMapping("/profil/{id}")
     public String account(@PathVariable(name = "id") Long id, Model model) {
-        Korisnik korisnik= this.korisnikService.findOne(id);
+        Korisnik korisnik = this.korisnikService.findOne(id);
         model.addAttribute("korisnik", korisnik);
         return "profil";
     }
@@ -60,11 +60,11 @@ public class KorisnikController {
     public ResponseEntity<?> login(@RequestBody KorisnikDTO korisnikDTO) {
         Korisnik korisnik;
         try {
-            korisnik =this.korisnikService.checkEmail(korisnikDTO);
+            korisnik = this.korisnikService.checkEmail(korisnikDTO);
         } catch (Exception e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-        if(korisnik==null || !korisnik.getLozinka().equals(korisnikDTO.getLozinka())) {
+        if (korisnik == null || !korisnik.getLozinka().equals(korisnikDTO.getLozinka())) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -72,16 +72,23 @@ public class KorisnikController {
     }
 
     @DeleteMapping("/delete_room/{fitnes_id}/sala/{sala_id}")
-    public ResponseEntity<?> delete_room(@PathVariable(name = "fitnes_id") Long fitnes_id, @PathVariable(name = "soba_id") Long soba_id ) {
+    public ResponseEntity<?> delete_room(@PathVariable(name = "fitnes_id") Long fitnes_id, @PathVariable(name = "soba_id") Long soba_id) {
         try {
-            if(this.salaService.deleteById(fitnes_id,soba_id))
+            if (this.salaService.deleteById(fitnes_id, soba_id))
                 return new ResponseEntity<>(HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/profil/{id}/fitnes/sala/{sala_id}")
+    public String room_editing(@PathVariable(name = "id") Long id, @PathVariable(name = "sala_id") Long sala_id, Model model){
+    Sala sala = this.salaService.findOne(sala_id);
+    model.addAttribute("sala",sala);
+    return "room";
+}
 
     @PostMapping("/dodaj_sobu")
     public ResponseEntity<?> add_room(@RequestBody SalaDTO sala) {
