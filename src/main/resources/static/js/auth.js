@@ -119,21 +119,21 @@ function initFitnes () {
     let uloga = sessionStorage.getItem("uloga");
     let offline=document.getElementById("offline");
     let online=document.getElementById("online");
-    let admin = document.getElementsByClassName("admin");
+    let trener = document.getElementsByClassName("trener");
     if (id == null) {
-        for (let i = 0; i < admin.length; i++) {
-            admin[i].style.display = "none";
+        for (let i = 0; i < trener.length; i++) {
+            trener[i].style.display = "none";
         }
         offline.style.display="block";
         online.style.display="none";
     } else {
-        if (uloga == "ADMIN") {
-            for (let i = 0; i < admin.length; i++) {
-                admin[i].style.display = "";
+        if (uloga == "TRENER") {
+            for (let i = 0; i < trener.length; i++) {
+                trener[i].style.display = "";
             }
         } else {
-            for (let i = 0; i < admin.length; i++) {
-                admin[i].style.display = "none";
+            for (let i = 0; i < trener.length; i++) {
+                trener[i].style.display = "none";
             }
         }
         online.style.display="block";

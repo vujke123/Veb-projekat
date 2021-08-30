@@ -18,13 +18,13 @@
             <label for="naziv">Naziv</label>
             <input class="form-control mr-sm-2"  type="text" id="naziv" th:value="${fitnes.naziv}" />
             <br>
-            <label for="adresa">Adresa</label>
+            <label for="adresa">Tip</label>
             <input class="form-control mr-sm-2" type="text" id="adresa" th:value="${fitnes.adresa}"/>
             <br>
-            <label for="br_tel_centrale">Broj telefona</label>
+            <label for="br_tel_centrale">Opis</label>
             <input class="form-control mr-sm-2" type="text" id="br_tel_centrale" th:value="${fitnes.br_tel_centrale}"/>
             <br>
-            <label for="email">Email</label>
+            <label for="email">Trajanje</label>
             <input class="form-control mr-sm-2" type="email" id="email" th:value="${fitnes.email}"/>
             <br>
             <button type="button" th:onclick="'editCinema('+${fitnes.id}+')'" class="btn btn-outline-secondary">Sacuvaj</button>

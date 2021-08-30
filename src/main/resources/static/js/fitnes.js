@@ -129,6 +129,9 @@ function addFitnes() {
         window.location.replace("/fitnes/" + fitnes_id);
     }
 
+function viewTrening(){
+    window.location.replace("/fitnesi");
+}
     function editCinema(cinema_id) {
 
         let naziv = document.getElementById("naziv").value;

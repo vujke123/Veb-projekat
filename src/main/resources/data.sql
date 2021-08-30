@@ -5,8 +5,8 @@ insert into KORISNIK (id,korisnicko_ime,lozinka,ime,prezime,kontakt_broj,email,d
 insert into TRENING (id, naziv, opis, tip_treninga, trajanje, ocena) values (1,'trening1','trcanje po traci','kardio','1h i 30min','3');
 insert into TRENING (id, naziv, opis, tip_treninga, trajanje, ocena) values (2,'trening2','dizanje tegova','snaga','1h','4.3');
 
-insert into FITNES_CENTAR (id, naziv, adresa, br_tel_centrale,email) values (1,'FULL Gym', 'Dr.Sime 24, Novi Sad', '1234567','fullgym@gmail.com');
-insert into FITNES_CENTAR (id, naziv, adresa, br_tel_centrale,email) values (2,'OLP', 'Strazilovska 9a, Novi Sad', '14609565','opl@gmail.com');
+insert into FITNES_CENTAR (id, naziv, adresa, br_tel_centrale,email) values (1,'trening1','trcanje po traci','kardio','1h i 30min');
+insert into FITNES_CENTAR (id, naziv, adresa, br_tel_centrale,email) values (2,'trening2','dizanje tegova','snaga','1h');
 
 insert into SALA(id, kapacitet, oznaka_sale, fitnes_centar_id) values (1,35,'MIA21',2);
 insert into SALA(id, kapacitet, oznaka_sale, fitnes_centar_id) values (2,15,'L13',1);
