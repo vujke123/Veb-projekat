@@ -31,4 +31,6 @@ public class SalaDTO {
     }
 
 
+    public String getOznaka_sale() { return oznaka;
+    }
 }

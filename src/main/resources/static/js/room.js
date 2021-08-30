@@ -1,60 +1,44 @@
-function addRoom(fitnes_id){
+function registerRoom() {
+    let kapacitet = document.getElementById("kapacitet").value;
+    let oznaka_sale = document.getElementById('oznaka_sale').value;
+    let id=sessionStorage.getItem("id");
 
-    var id=sessionStorage.getItem("id");
-    let kapacitet=document.getElementById("kapacitet").value;
-    let oznaka=document.getElementById("oznaka").value;
     var formData = JSON.stringify({
-        "oznaka": oznaka,
         "kapacitet": kapacitet,
-        "fitnes_id":fitnes_id
+        "oznaka_sale": oznaka_sale
     });
     $.ajax({
-        url: '/dodaj_sobu',
+        url: '/registracija-sal',
         dataType: 'json',
         type: 'post',
         contentType: 'application/json',
         data: formData,
-        complete: function (xhr, status) {
-            if (status === 'error') {
-                alert("Something's wrong!");
-            }
-            else {
-                window.location.replace("/profil/"+id+"/fitnes");
-            }
+        success: function(data){
+            window.location.replace("/profil/"+id+"/sale");
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            window.location.replace("/profil/"+id+"/sale");
         }
     });
 
 }
-function deleteRoom(soba_id,fitnes_id){
 
-    var id=sessionStorage.getItem("id");
-    $.ajax({
-        url: '/brisanje_sobe/'+fitnes_id+'/soba/'+soba_id,
-        dataType: 'json',
-        type: 'delete',
-        complete: function (xhr, status) {
-            if (status === 'error') {
-                alert("Something's wrong!");
-            }
-            else {
-                window.location.replace("/account/"+id+"/cinema");
-            }
-        }
-    });
-
+function editR(sala_id) {
+    window.location.replace("/sala/" + sala_id);
 }
-function editRoom(room_id){
 
-    var id=sessionStorage.getItem("id");
-    let kapacitet=document.getElementById("kapacitet").value;
-    let oznaka=document.getElementById("oznaka").value;
+function editRoom(sala_id) {
+
+    let oznaka_sale = document.getElementById("oznaka_sale").value;
+    let kapacitet = document.getElementById("kapacitet").value;
+    let id=sessionStorage.getItem("id");
     var formData = JSON.stringify({
-        "id":room_id,
-        "oznaka": oznaka,
-        "kapacitet": kapacitet,
+        "id": sala_id,
+        "oznaka_sale": oznaka_sale,
+        "kapacitet": kapacitet
     });
     $.ajax({
-        url: '/izmena_sobe',
+        url: '/uredi_salu',
         dataType: 'json',
         type: 'put',
         contentType: 'application/json',
@@ -62,18 +46,22 @@ function editRoom(room_id){
         complete: function (xhr, status) {
             if (status === 'error') {
                 alert("Something's wrong!");
-            }
-            else {
-                window.location.replace("/profil/"+id+"/fitnes");
+            } else {
+                window.location.replace("/profil/" +id+ "/sale");
             }
         }
     });
+}
 
+function createRoom(){
+    var id = sessionStorage.getItem("id");
+    window.location.replace("/profil/"+id+"/registracija-sale");
 }
-function edit(room_id){
-    let id=sessionStorage.getItem("id");
-    window.location.replace("/profil/"+id+"/fitnes/soba/"+room_id);
+function viewRoom() {
+    var id=sessionStorage.getItem("id");
+    window.location.replace("/profil/" +id+ "/sale");
 }
+
 function fitnes(){
     let id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/fitnes");

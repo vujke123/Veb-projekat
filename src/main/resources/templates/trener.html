@@ -8,10 +8,16 @@
     <script src="/js/login.js" type="text/javascript"></script>
     <script src="/js/auth.js" type="text/javascript"></script>
     <script src="/js/trener.js" type="text/javascript"></script>
+    <script src="/js/room.js" type="text/javascript"></script>
     <title></title>
     <script src="https://kit.fontawesome.com/705b70177f.js" crossorigin="anonymous"></script>
 
 </head>
+
+<style>
+    h3 {text-align: center;}
+</style>
+
 <body onload="initAcc()">
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd" static-top>
@@ -106,6 +112,12 @@
                         <li class="nav-item">
                             <a class="nav-link" onclick="createManager()">Dodaj trenera</a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="createRoom()">Dodaj salu</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" onclick="viewRoom()">Sale</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -113,6 +125,9 @@
     </div>
     <div class="row justify-content-center admin">
         <div class="col-sm-6">
+            <br>
+            <h3> Prikaz trenera </h3>
+            <br>
             <table id="managers" class="table table-hover">
                 <thead class="thead-light">
                 <tr>

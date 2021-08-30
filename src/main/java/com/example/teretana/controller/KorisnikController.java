@@ -119,6 +119,32 @@ public class KorisnikController {
         return "trener.html";
     }
 
+    @GetMapping("/sala/{id}")
+    public String sala(@PathVariable(name="id") Long id, Model model) {
+        Sala sala=this.salaService.findOne(id);
+        model.addAttribute("sala", sala);
+        return "izmena-sale.html";
+    }
+
+    @PutMapping("/uredi_salu")
+    public ResponseEntity<?> edit_sala(@RequestBody Sala sala) {
+        try {
+            this.salaService.editSala(sala);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @GetMapping("/profil/{id}/sale")
+    public String sale(@PathVariable(name = "id") Long id, Model model) {
+        List<Sala> sale = this.salaService.findAll();
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        model.addAttribute("sale", sale);
+        model.addAttribute("korisnik",korisnik);
+        return "sala.html";
+    }
     @GetMapping("/profil/{id}/registracija-trenera")
     public String registracija_trenera(@PathVariable(name = "id") Long id, Model model) {
         List <Fitnes_Centar> fitnesi = this.fitnesService.findAll();
@@ -126,6 +152,15 @@ public class KorisnikController {
         model.addAttribute("fitnesi",fitnesi);
         model.addAttribute("korisnik", korisnik);
         return "registracija-trenera.html";
+    }
+
+    @GetMapping("/profil/{id}/registracija-sale")
+    public String registracija_sale(@PathVariable(name = "id") Long id, Model model) {
+        List <Sala> sale = this.salaService.findAll();
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        model.addAttribute("sale",sale);
+        model.addAttribute("korisnik", korisnik);
+        return "registracija-sale.html";
     }
 
     @PostMapping("/registracija-tren")
@@ -139,10 +174,31 @@ public class KorisnikController {
             return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/registracija-sal")
+    public ResponseEntity<?> create_sale(@RequestBody Sala salaDTO) {
+        try {
+            this.salaService.saveSala(salaDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping ("/ukloni-trenera/{id}")
     public ResponseEntity<?> obrisi_tren(@PathVariable(name = "id") Long id) {
         try{
             this.korisnikService.deleteUser(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping ("/ukloni-salu/{id}")
+    public ResponseEntity<?> obrisi_salu(@PathVariable(name = "id") Long id) {
+        try {
+            this.salaService.deleteSala(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

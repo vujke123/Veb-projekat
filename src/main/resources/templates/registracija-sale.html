@@ -2,23 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script th:inline="javascript">
-        var korisnik /* = [[${korisnik}]];*/
+        var sale ;
+        var korisnik;
     </script>
-       <script src="/js/login.js" type="text/javascript"></script>
-       <script src="/js/auth.js" type="text/javascript"></script>
-       <script src="/js/trener.js" type="text/javascript"></script>
-       <script src="/js/room.js" type="text/javascript"></script>
-       <title></title>
-       <script src="https://kit.fontawesome.com/705b70177f.js" crossorigin="anonymous"></script>
+    <script src="/js/login.js" type="text/javascript"></script>
+    <script src="/js/auth.js" type="text/javascript"></script>
+    <script src="/js/trener.js" type="text/javascript"></script>
+    <script src="/js/room.js" type="text/javascript"></script>
+    <title></title>
+    <script src="https://kit.fontawesome.com/705b70177f.js" crossorigin="anonymous"></script>
 
-   </head>
-   <body onload="initAcc()">
-   <!-- Navigation -->
-<nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd" static-top>
+</head>
+
+<style>
+    h3 {text-align: center;}
+</style>
+
+<body onload="initAcc()">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd" bg-dark static-top>
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive1">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/}">Pocetna
@@ -26,7 +33,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/fitnesi}">Fitnes centri</a>
+                    <a class="nav-link" th:href="@{/fitnesi}">Fitnes Centri</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/treninzi}">Treninzi</a>
@@ -34,7 +41,7 @@
                 <li id="online" class="nav-item">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-korisnik"></i>
+                            <i class="fas fa-user"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" onclick="profile()">Profil</a>
@@ -43,9 +50,32 @@
                     </div>
 
                 </li>
+                <li id="offline" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Login
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <form class="px-4 py-3" id="loginForm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email"  />
+                            </div>
+                            <div class="form-group">
+                                <label for="lozinka">Lozinka</label>
+                                <input type="password" class="form-control" id="lozinka"  />
+                            </div>
+
+                            <button type="button" onclick="login()" class="btn btn-primary">Prijava</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/registacija}">Registracija</a>
+                    </div>
+                </li>
             </ul>
+        </div>
     </div>
 </nav>
+
 <main>
     <div  class="row justify-content-center online">
         <div class="card col-sm-6">
@@ -68,37 +98,18 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center clan">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive1">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" onclick="odradjen_trening()">Odradjeni treninzi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onclick="reservations()">Prijavljeni treninzi</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
     <div class="row justify-content-center admin">
         <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive2">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" onclick="managers()">Treneri</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" onclick="createManager()">Dodaj trenera</a>
                         </li>
                         <li class="nav-item ">
@@ -112,26 +123,28 @@
             </div>
         </nav>
     </div>
-    <div class="row justify-content-center trener">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" onclick="fitnes()">Fitnes centar</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" th:href="@{/fitnesi}">Treninzi</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <div id="innerdiv">
+                <br>
+                <form>
+                    <br>
+                    <h3> Dodavanje sale </h3>
+                    <br>
+                    <label for="kapacitet">Kapacitet</label>
+                    <input class="form-control mr-sm-2" type="text" id="kapacitet" />
+                    <br>
+                    <label for="oznaka_sale">Oznaka sale</label>
+                    <input class="form-control mr-sm-2" type="text" id="oznaka_sale" />
+                    <br>
+                    <button type="button" onclick="registerRoom()" class="btn btn-light">Dodaj salu</button>
+                    <br>
+                    <br>
+                    <br>
+                </form>
             </div>
-        </nav>
+        </div>
     </div>
-
 </main>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

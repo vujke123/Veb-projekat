@@ -36,6 +36,8 @@ function registerManager() {
     });
 
 }
+
+
 function managers(){
     var id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/treneri");
@@ -43,6 +45,23 @@ function managers(){
 function createManager(){
     var id=sessionStorage.getItem("id");
     window.location.replace("/profil/"+id+"/registracija-trenera");
+}
+
+
+function deleteRoom(sala_id) {
+    let id=sessionStorage.getItem("id");
+    $.ajax({
+        url: '/ukloni-salu/'+sala_id,
+        dataType: 'json',
+        type: 'delete',
+        contentType: 'application/json',
+        success: function(){
+            window.location.replace("/profil/"+id+"/sale");
+        },
+        error: function(){
+            window.location.replace("/profil/"+id+"/sale");
+        }
+    });
 }
 
 function deleteManager(trener_id){

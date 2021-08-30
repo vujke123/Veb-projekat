@@ -1,7 +1,11 @@
 package com.example.teretana.service;
 
 import com.example.teretana.model.Fitnes_Centar;
+import com.example.teretana.model.Korisnik;
 import com.example.teretana.model.Sala;
+import com.example.teretana.model.Uloga;
+import com.example.teretana.model.dto.SalaDTO;
+import com.example.teretana.model.dto.TrenerDTO;
 import com.example.teretana.repository.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +33,10 @@ public class SalaService {
         return sale;
     }
 
+    public void deleteSala(Long id) {
+        this.salaRepository.deleteById(id);
+    }
+
     public Sala save(Sala sala) {
         return this.salaRepository.save(sala);
     }
@@ -46,5 +54,21 @@ public class SalaService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void saveSala(Sala salaDTO) {
+        Sala newsala = new Sala();
+        newsala.setKapacitet(Math.toIntExact(salaDTO.getKapacitet()));
+        newsala.setOznaka_sale(salaDTO.getOznaka_sale());
+
+        this.salaRepository.save(newsala);
+    }
+
+    public void editSala(Sala salaDTO) {
+        Sala sala = this.salaRepository.findById(salaDTO.getId()).orElse(null);
+        sala.setKapacitet(Math.toIntExact(salaDTO.getKapacitet()));
+        sala.setOznaka_sale(salaDTO.getOznaka_sale());
+
+        this.salaRepository.save(sala);
     }
 }
