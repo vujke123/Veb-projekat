@@ -24,10 +24,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/fitnesi}">Fitnes</a>
+                    <a class="nav-link" th:href="@{/fitnesi}">Treninzi</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/treninzi}">Treninzi
+                    <a class="nav-link" th:href="@{/treninzi}">Fitnes Centar
                         <span class="sr-only">(current)</span></a>
                 </li>
                 <li  class="nav-item online">
@@ -72,21 +72,6 @@
     <div class="row justify-content-center">
         <nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd;">
             <form class="form-inline">
-                <input class="form-control mr-sm-2" id="treningName" type="search" placeholder="Naziv" aria-label="Search">
-                <select  class="custom-select mr-sm-2" id="tip">
-                    <option selected>Tip</option>
-                    <option th:each="tip : ${treninziDTO.tip_treninga}" th:text="${tip}"></option>
-                </select>
-                <input class="form-control mr-sm-2" id="opis" type="search" placeholder="Opis" aria-label="Search">
-                <input class="form-control mr-sm-2" id="ocena" type="search" placeholder="Ocena" aria-label="Search">
-                <input class="form-control mr-sm-2" id="cena" type="search" placeholder="Cena" aria-label="Search">
-                <input class="form-control mr-sm-2" id="vreme" type="search" placeholder="Vreme" aria-label="Search">
-                <button class="btn btn-light" type="button" onclick="filterData()">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                    </svg>
-                </button>
             </form>
         </nav>
     </div>
@@ -97,10 +82,10 @@
                 <tr>
                     <th></th>
                     <th   onclick="sortTable(1)">Naziv <i id="th1" class="fa fa-fw fa-sort"></i></th>
-                    <th   onclick="sortTable(2)">Tip<i id="th2" class="fa fa-fw fa-sort"></i></th>
-                    <th   onclick="sortTable(3)">Opis<i id="th3" class="fa fa-fw fa-sort"></i></th>
-                    <th   onclick="sortTable(4)">Ocena<i id="th4" class="fa fa-fw fa-sort"></i></th>
-                    <th   onclick="sortTable(5)">Trajanje<i id="th5" class="fa fa-fw fa-sort"></i></th>
+                    <th   onclick="sortTable(2)">Adresa<i id="th2" class="fa fa-fw fa-sort"></i></th>
+                    <th   onclick="sortTable(3)">Br.Telefona<i id="th3" class="fa fa-fw fa-sort"></i></th>
+                    <th   onclick="sortTable(5)">Emal<i id="th5" class="fa fa-fw fa-sort"></i></th>
+                    <th></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -110,9 +95,8 @@
                     <td th:text="${trening1.naziv}"></td>
                     <td th:text="${trening1.tip_treninga}"></td>
                     <td th:text="${trening1.opis}"></td>
-                    <td th:text="${trening1.ocena}"></td>
                     <td th:text="${trening1.trajanje} + ' min'"></td>
-                    <td class="clan" ><button type="button" th:onclick="'getTrening('+${trening1.id}+')'" class="btn btn-outline-secondary viewer">Prijavljen</button></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
