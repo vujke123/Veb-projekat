@@ -44,4 +44,14 @@ public class FitnesService {
         this.fitnesRepository.save(fitnes_centar);
        // this.fitnesRepository.updateFitnes(fitnes.getId(),fitnes.getNaziv(),fitnes.getAdresa(),fitnes.getBr_tel_centrale(),fitnes.getEmail());
     }
+
+    public void rateFitnes(Fitnes_Centar fitnes) {
+        Fitnes_Centar fitnes_centar = this.fitnesRepository.findById(fitnes.getId()).orElse(null);
+        fitnes_centar.setNaziv(fitnes.getNaziv());
+        fitnes_centar.setAdresa(fitnes.getAdresa());
+        fitnes_centar.setBr_tel_centrale(fitnes.getBr_tel_centrale());
+        fitnes_centar.setEmail(fitnes.getEmail());
+        fitnes_centar.setOcena(fitnes.getOcena());
+        this.fitnesRepository.save(fitnes_centar);
+    }
 }

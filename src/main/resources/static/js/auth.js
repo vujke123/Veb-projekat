@@ -119,10 +119,14 @@ function initFitnes () {
     let uloga = sessionStorage.getItem("uloga");
     let offline=document.getElementById("offline");
     let online=document.getElementById("online");
+    let clan = document.getElementsByClassName("clan");
     let trener = document.getElementsByClassName("trener");
     if (id == null) {
         for (let i = 0; i < trener.length; i++) {
             trener[i].style.display = "none";
+        }
+        for (let i = 0; i < clan.length; i++) {
+            clan[i].style.display = "none";
         }
         offline.style.display="block";
         online.style.display="none";
@@ -131,7 +135,13 @@ function initFitnes () {
             for (let i = 0; i < trener.length; i++) {
                 trener[i].style.display = "";
             }
-        } else {
+            for (let i = 0; i < clan.length; i++) {
+                clan[i].style.display = "none";
+            }
+        } else if(uloga == "CLAN") {
+            for (let i = 0; i < clan.length; i++) {
+                clan[i].style.display = "";
+            }
             for (let i = 0; i < trener.length; i++) {
                 trener[i].style.display = "none";
             }

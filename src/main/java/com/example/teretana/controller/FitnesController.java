@@ -49,6 +49,13 @@ public class FitnesController {
         return "fitnes";
     }
 
+    @GetMapping("/fitnesRate/{id}")
+    public String fitnesRate(@PathVariable(name="id") Long id, Model model) {
+        Fitnes_Centar fitnes= this.fitnesService.findOne(id);
+        model.addAttribute("fitnes", fitnes);
+        return "fitnesRate.html";
+    }
+
     @DeleteMapping("/ukloni-fitnes/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         try{
@@ -64,6 +71,16 @@ public class FitnesController {
     public ResponseEntity<?> edit_fitnes(@RequestBody Fitnes_Centar fitnes) {
         try {
             this.fitnesService.editFitnes(fitnes);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/oceni_fitnes")
+    public ResponseEntity<?> rate_fitnes(@RequestBody Fitnes_Centar fitnes) {
+        try {
+            this.fitnesService.rateFitnes(fitnes);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

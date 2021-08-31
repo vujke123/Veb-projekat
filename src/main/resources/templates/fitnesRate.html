@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pocetna</title>
+    <script th:inline="javascript">
+        var fitnes;
+    </script>
+    <script src="/js/login.js" type="text/javascript"></script>
+    <script src="/js/fitnes.js" type="text/javascript"></script>
+
+</head>
+<body>
+<div>
+    <div id="innerdiv">
+        <h>Oceni</h>
+        <br>
+        <form>
+            <label for="naziv">Naziv</label>
+            <input class="form-control mr-sm-2"  type="text" id="naziv" th:value="${fitnes.naziv}" />
+            <br>
+            <br>
+            <label for="ocena">Ocena</label>
+            <input class="form-control mr-sm-2" type="text" id="ocena" th:value="${fitnes.ocena}"/>
+            <br>
+            <button type="button" th:onclick="'Rate('+${fitnes.id}+')'" class="btn btn-outline-secondary">Oceni</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <label for="adresa"></label>
+            <input class="form-control mr-sm-2" type="text" id="adresa" th:value="${fitnes.adresa}"/>
+            <label for="br_tel_centrale">Opis</label>
+            <input class="form-control mr-sm-2" type="text" id="br_tel_centrale" th:value="${fitnes.br_tel_centrale}"/>
+            <label for="email"></label>
+            <input class="form-control mr-sm-2" type="email" id="email" th:value="${fitnes.email}"/>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/register.css">
+</body>
+</html>

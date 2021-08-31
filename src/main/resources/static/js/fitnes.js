@@ -129,6 +129,10 @@ function addFitnes() {
         window.location.replace("/fitnes/" + fitnes_id);
     }
 
+    function rate(fitnes_id) {
+    window.location.replace("/fitnesRate/" + fitnes_id);
+    }
+
 function viewTrening(){
     window.location.replace("/fitnesi");
 }
@@ -162,6 +166,39 @@ function viewTrening(){
                 }
             }
         });
+}
+
+function Rate(cinema_id) {
+    let naziv = document.getElementById("naziv").value;
+    let adresa = document.getElementById("adresa").value;
+    let br_tel_centrale = document.getElementById("br_tel_centrale").value;
+    let email = document.getElementById("email").value;
+    let ocena = document.getElementById("ocena").value;
+    var formData = JSON.stringify({
+        "id": cinema_id,
+        "naziv": naziv,
+        "adresa": adresa,
+        "email": email,
+        "br_tel_centrale": br_tel_centrale,
+        "ocena": ocena,
+        "schedule": null,
+        "trener": null,
+        "sala": null
+    });
+    $.ajax({
+        url: '/oceni_fitnes',
+        dataType: 'json',
+        type: 'put',
+        contentType: 'application/json',
+        data: formData,
+        complete: function (xhr, status) {
+            if (status === 'error') {
+                alert("Something's wrong!");
+            } else {
+                window.location.replace("/fitnesi");
+            }
+        }
+    });
 }
 
 function getTrening(id) {

@@ -1,7 +1,13 @@
 package com.example.teretana.model.dto;
 
-import javax.persistence.Column;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class FitnesDTO {
 
     private String naziv;
@@ -11,6 +17,16 @@ public class FitnesDTO {
     private String br_tel_centrale;
 
     private String email;
+
+    private String ocena;
+
+    public String getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(String ocena) {
+        this.ocena = ocena;
+    }
 
     public String getNaziv() {
         return naziv;

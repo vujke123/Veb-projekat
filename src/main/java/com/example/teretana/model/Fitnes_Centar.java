@@ -31,6 +31,8 @@ public class Fitnes_Centar implements Serializable {
     @Column
     private String br_tel_centrale;
 
+    @Column Long ocena;
+
     @Column(unique = true)
     private String email;
     @JsonIgnore
