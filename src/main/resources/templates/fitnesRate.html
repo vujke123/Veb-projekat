@@ -20,7 +20,7 @@
             <br>
             <br>
             <label for="ocena">Ocena</label>
-            <input class="form-control mr-sm-2" type="text" id="ocena" th:value="${fitnes.ocena}"/>
+            <input class="form-control mr-sm-2" type="number" id="ocena" min="1" max="10" th:value="${fitnes.ocena}"/>
             <br>
             <button type="button" th:onclick="'Rate('+${fitnes.id}+')'" class="btn btn-outline-secondary">Oceni</button>
             <br>
